@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [x, setX] = useState(0)
+  const [y, setY] = useState(0)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <button className='up' onClick={() => setY(prev => prev - 50)} disabled={y === 0 ? true : false}>Up</button>
+      <div className='middle-container'>
+        <button className='left' onClick={() => setX(prev => prev - 50)} disabled={x === 0 ? true : false}>Left</button>
+        <div className='playground'>
+          <div className="square" style={{ left: x, top: y }}></div>
+        </div>
+        <button className='right' onClick={() => setX(prev => prev + 50)} disabled={x === 450 ? true : false}>Right</button>
+      </div>
+      <button className='down' onClick={() => setY(prev => prev + 50)} disabled={y === 450 ? true : false}>Down</button>
     </div>
   );
 }
